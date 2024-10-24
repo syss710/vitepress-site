@@ -1,0 +1,25 @@
+@import './rainbow.css';
+@import './blockquote.css';
+@import './custom-block.css';
+@import './marker.css';
+
+
+/* 设置图片居中 */
+p img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* 取消超链接下划线 */
+.vp-doc a {
+    text-decoration: none;
+}
+
+/* 图片点击放大优先级调整 */
+.medium-zoom-image--opened {
+    z-index: 9999 !important;
+}
+/* 使图片点击放大后背景色覆盖视口 */
+.medium-zoom-overlay {
+    z-index: 9998 !important;
+}
