@@ -21,6 +21,7 @@
     "element-plus": "^2.8.6",
     "markdown-it-textual-uml": "^0.17.1",
     "medium-zoom": "^1.1.0",
-    "tdesign-vue-next": "^1.10.2"
+    "tdesign-vue-next": "^1.10.2",
+    "xmind-embed-viewer": "^1.2.0"
   }
 }

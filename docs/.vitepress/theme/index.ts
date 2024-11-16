@@ -16,6 +16,7 @@ import Linkcard from "./components/Linkcard.vue"
 import xgplayer from "./components/xgplayer.vue";
 import PlayList from "./components/PlayList.vue";
 import Tags from "./components/Tags.vue";
+import XmindViewer from './components/XmindViewer.vue'
 
 
 export default {
@@ -34,6 +35,7 @@ export default {
         app.component('xgplayer', xgplayer);
         app.component('PlayList', PlayList);
         app.component('Tags', Tags);
+        app.component('XmindViewer', XmindViewer);
     },
 
     //

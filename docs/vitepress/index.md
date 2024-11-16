@@ -203,6 +203,10 @@ const playlist = [
 <sapn class="marker-evy">这里是尤雨溪的主页样式，鼠标放在我上面看效果</sapn>
 
 
+### Xmind
+
+<XmindViewer url="/xmind/C语言.xmind"/>
+
 ## 特别鸣谢
 
 本人并不是前端开发人员，所以对前端技术也不是很了解，只是了解了一下 `vitepress`，然后根据其他大神的项目结合自己的需求构建了本项目，下面是一些参考手册。
