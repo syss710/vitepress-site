@@ -4,6 +4,16 @@
 @import './marker.css';
 
 
+/** 代码字体 */
+@font-face {
+    font-family: "FiraCode";
+    src: url("/fonts/FiraCode-VF.woff2");
+}
+:root {
+    --vp-font-family-base: "SourceHanSerifCN";
+    --vp-font-family-mono: "FiraCode";
+}
+
 /* 设置图片居中 */
 p img {
     display: block;

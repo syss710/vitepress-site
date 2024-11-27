@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { data as posts } from "../posts.data.mts";
-import { ref, computed } from "vue";
-import { inBrowser } from 'vitepress'
+import { ref, computed, watch } from "vue";
+import { inBrowser, useData } from 'vitepress'
 
 ///
 // 非 Vue 组件需要手动引入
@@ -14,6 +14,23 @@ import {
 // 引入组件库的少量全局样式变量
 import 'tdesign-vue-next/es/style/index.css';
 ///
+
+const { isDark } = useData();
+// tdesign 暗色切换 https://tdesign.tencent.com/vue-next/dark-mode
+watch(
+    isDark,
+    () => {
+      if(isDark.value) {
+        document.documentElement.setAttribute('theme-mode', 'dark');
+      } else {
+        document.documentElement.removeAttribute('theme-mode');
+      }
+    },
+    {
+      immediate: true,
+    }
+);
+
 
 const isMobile = () => {
   if (inBrowser) {
