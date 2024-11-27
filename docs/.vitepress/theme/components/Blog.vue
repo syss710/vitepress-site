@@ -22,10 +22,7 @@ const isMobile = () => {
   return false;
 };
 
-const search = window.location.search.slice(1);
-const searchParams = new URLSearchParams(search);
-const page = searchParams.get("page") || 1;
-
+const page = 1;
 const current = ref(+page);
 const pageSize = ref(8);
 const total = ref(posts.length);
