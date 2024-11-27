@@ -17,6 +17,7 @@ import xgplayer from "./components/xgplayer.vue";
 import PlayList from "./components/PlayList.vue";
 import Tags from "./components/Tags.vue";
 import XmindViewer from './components/XmindViewer.vue'
+import Blog from './components/Blog.vue'
 
 
 export default {
@@ -36,6 +37,7 @@ export default {
         app.component('PlayList', PlayList);
         app.component('Tags', Tags);
         app.component('XmindViewer', XmindViewer);
+        app.component('Blog', Blog);
     },
 
     //
