@@ -28,7 +28,8 @@
 
       </div>
       <div class="article-no-slelect" v-else>
-        <el-empty :image-size="200" description="点击上方标签，查看标签下的所有文章"/>
+        <el-empty class="el-empty-default" v-if="showDefault" :image-size="200" description="点击上方标签，查看标签下的所有文章"/>
+        <el-empty class="el-empty-url" v-else :image-size="200" description="URL传入的标签不存在！点击上方标签，查看标签下的所有文章"/>
       </div>
     </div>
 
@@ -47,10 +48,10 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed, nextTick } from "vue";
+import {ref, computed, nextTick, onMounted } from "vue";
 import {inBrowser} from 'vitepress'
 // ElConfigProvider 组件
-import { ElConfigProvider } from 'element-plus';
+import {ElConfigProvider, ElMessage} from 'element-plus';
 // 引入中文包
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 // 更改分页文字
@@ -62,6 +63,12 @@ zhCn.el.pagination.pageClassifier = '页';
 
 
 import {data as posts} from "../posts.data.mts";
+
+
+// 获取URL中的参数
+const urlParams = new URLSearchParams(window.location.search);
+const tagFromUrl = urlParams.get('tag');
+const showDefault = ref(true);
 
 const current = ref(+1);
 const pageSize = ref(5);
@@ -161,9 +168,26 @@ const toggleTag = (tagTitle: string) => {
         articleContainer.value.scrollIntoView({ behavior: 'smooth' }); // 滚动到元素位置
       }
     });
+    // 更新URL，添加或更新tag参数
+    updateUrl(tagTitle, window.location.pathname);
   }
   current.value = 1;
 }
+
+// 更新URL的查询参数
+const updateUrl = (tag: string, pathname: string) => {
+  const newUrl = new URL(window.location.origin + pathname);
+  const searchParams = new URLSearchParams(newUrl.search);
+
+  if (tag) {
+    searchParams.set('tag', tag);
+  } else {
+    searchParams.delete('tag');
+  }
+
+  newUrl.search = searchParams.toString();
+  history.pushState({}, '', newUrl);
+};
 
 // 拥有被选中的Tag下的文章
 // 初始化一个变量来存储找到的值（如果找到的话）
@@ -204,6 +228,29 @@ const curPosts = computed(() => {
   );
 });
 
+
+onMounted(() => {
+  /*
+  // 在组件挂载时打印传入的tag
+  if (tagFromUrl) {
+    console.log('传入的tag:', tagFromUrl);
+  } else {
+    console.log('没有从URL中传入tag');
+  }
+  */
+
+  if (tagFromUrl) {
+    // 检查传入的tag是否存在
+    const tagExists = tags.some(tag => Object.keys(tag).includes(tagFromUrl));
+    if (!tagExists) {
+      ElMessage.error(`标签 "${tagFromUrl}" 不存在`); // 显示错误消息
+      showDefault.value = false; // 显示URL标签不存在页面
+    } else {
+      // 如果tag存在，则进行选中
+      toggleTag(tagFromUrl);
+    }
+  }
+});
 </script>
 
 <style scoped>

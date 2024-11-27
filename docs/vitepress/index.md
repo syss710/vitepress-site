@@ -207,6 +207,20 @@ const playlist = [
 
 <XmindViewer url="/xmind/C语言.xmind"/>
 
+
+### 博客Tag页URL查询
+
+博客Tag页URL查询组件，主要是为了方便在文档中添加标签链接，例如要查询标签页中的 `vitepress`标签，只需在文档中使用以下格式即可
+
+```markdown
+[vitepress](/tags.html?tag=vitepress)
+```
+
+效果如下
+
+[vitepress](/tags.html?tag=vitepress)
+
+
 ## 特别鸣谢
 
 本人并不是前端开发人员，所以对前端技术也不是很了解，只是了解了一下 `vitepress`，然后根据其他大神的项目结合自己的需求构建了本项目，下面是一些参考手册。
